@@ -5,6 +5,7 @@ from checks.views import GetAddChecks
 from logs.views import PendingActions
 
 from . import views
+from .vault_views import AgentVaultCreds
 
 urlpatterns = [
     # agent views
@@ -30,6 +31,8 @@ urlpatterns = [
     path("<agent:agent_id>/processes/", views.AgentProcesses.as_view()),
     path("<agent:agent_id>/processes/<int:pid>/", views.AgentProcesses.as_view()),
     path("<agent:agent_id>/eventlog/<str:logtype>/<int:days>/", views.get_event_log),
+    # Vaultwarden credential panel (remote session)
+    path("<agent:agent_id>/vaultcreds/", AgentVaultCreds.as_view()),
     # agent history
     path("history/", views.AgentHistoryView.as_view()),
     path("<agent:agent_id>/history/", views.AgentHistoryView.as_view()),
